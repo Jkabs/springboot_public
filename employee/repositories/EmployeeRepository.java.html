@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>EmployeeRepository.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c8498d;}
+.s1 { color: #a8afbe;}
+.s2 { color: #a3ccb5;}
+.s3 { color: #ccb86c;}
+</style>
+</head>
+<body bgcolor="#132623">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+EmployeeRepository.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">employee.repositories</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">employee.models.Employee</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org.springframework.data.jpa.repository.JpaRepository</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org.springframework.stereotype.Repository</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java.util.Optional</span><span class="s2">;</span>
+
+<span class="s1">@Repository</span>
+<span class="s0">public interface </span><span class="s1">EmployeeRepository </span><span class="s0">extends </span><span class="s1">JpaRepository&lt;Employee</span><span class="s3">,</span><span class="s1">Long&gt; {</span>
+
+    <span class="s1">Optional&lt;Employee&gt; findEmployeeByEmail(String email)</span><span class="s2">;</span>
+
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

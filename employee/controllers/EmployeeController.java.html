@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>EmployeeController.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c8498d;}
+.s1 { color: #a8afbe;}
+.s2 { color: #a3ccb5;}
+.s3 { color: #acac58;}
+.s4 { color: #ccb86c;}
+</style>
+</head>
+<body bgcolor="#132623">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+EmployeeController.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">employee.controllers</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">employee.models.Employee</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">employee.services.EmployeeService</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org.springframework.beans.factory.annotation.Autowired</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org.springframework.web.bind.annotation.*</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java.util.List</span><span class="s2">;</span>
+
+<span class="s1">@RestController</span>
+<span class="s1">@RequestMapping(</span><span class="s3">&quot;/api/v1/employee&quot;</span><span class="s1">)</span>
+<span class="s0">public class </span><span class="s1">EmployeeController {</span>
+
+    <span class="s0">private final </span><span class="s1">EmployeeService employeeService</span><span class="s2">;</span>
+
+    <span class="s1">@Autowired</span>
+    <span class="s0">public </span><span class="s1">EmployeeController(EmployeeService employeeService) {</span>
+        <span class="s0">this</span><span class="s1">.employeeService = employeeService</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+
+    <span class="s1">@GetMapping</span>
+    <span class="s0">public </span><span class="s1">List&lt;Employee&gt; getEmployees(){</span>
+
+        <span class="s0">return </span><span class="s1">employeeService.getEmployees()</span><span class="s2">;</span>
+
+    <span class="s1">}</span>
+
+    <span class="s1">@GetMapping(path=</span><span class="s3">&quot;{employeeId}&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">Employee getStudentById(@PathVariable(</span><span class="s3">&quot;employeeId&quot;</span><span class="s1">) Long employeeId){</span>
+
+        <span class="s0">return </span><span class="s1">employeeService.getEmployeeById(employeeId)</span><span class="s2">;</span>
+
+    <span class="s1">}</span>
+
+    <span class="s1">@PostMapping</span>
+    <span class="s0">public </span><span class="s1">String registerNewStudent(@RequestBody Employee employee){</span>
+
+        <span class="s1">employeeService.registerNewEmployee(employee)</span><span class="s2">;</span>
+
+        <span class="s0">return </span><span class="s3">&quot;registerNewStudent Successful&quot;</span><span class="s2">;</span>
+
+    <span class="s1">}</span>
+
+    <span class="s1">@DeleteMapping(path=</span><span class="s3">&quot;{employeeId}&quot;</span><span class="s1">)</span>
+        <span class="s0">public </span><span class="s1">String deleteStudent(@PathVariable(</span><span class="s3">&quot;employeeId&quot;</span><span class="s1">) Long employeeId){</span>
+
+       
+        <span class="s1">employeeService.deleteEmployee(employeeId)</span><span class="s2">;</span>
+
+        <span class="s0">return </span><span class="s3">&quot;deleteStudent successful&quot;</span><span class="s2">;</span>
+
+    <span class="s1">}</span>
+
+    <span class="s1">@PutMapping(path=</span><span class="s3">&quot;{employeeId}&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">String updateStudent(@PathVariable(</span><span class="s3">&quot;employeeId&quot;</span><span class="s1">) Long employeeId</span><span class="s4">,</span>
+                              <span class="s1">@RequestParam(required = </span><span class="s0">false</span><span class="s1">) String name</span><span class="s4">,</span>
+                              <span class="s1">@RequestParam(required = </span><span class="s0">false</span><span class="s1">) String email){</span>
+
+        <span class="s1">employeeService.updateEmployee(employeeId</span><span class="s4">,</span><span class="s1">name</span><span class="s4">,</span><span class="s1">email)</span><span class="s2">;</span>
+
+       <span class="s0">return </span><span class="s3">&quot;updateStudent successful&quot;</span><span class="s2">;</span>
+
+    <span class="s1">}</span>
+
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
